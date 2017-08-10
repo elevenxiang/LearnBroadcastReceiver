@@ -10,6 +10,9 @@ public class MyReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        System.out.println("接收到的消息是: " + intent.getStringExtra("data"));
+        System.out.println("MyReceiver 接收到的消息是: " + intent.getStringExtra("data"));
+
+        // when call below one, other low-priority BroadcastReceiver can't get broadcast message anymore.
+        abortBroadcast();
     }
 }
