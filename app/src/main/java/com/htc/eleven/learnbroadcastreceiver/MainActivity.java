@@ -34,7 +34,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //Intent intent = new Intent(MainActivity.this,MyReceiver.class);
                 Intent intent = new Intent(MyReceiver.ACTION);
                 intent.putExtra("data", "来自eleven的广播数据: " + tv.getText().toString());
-                sendBroadcast(intent);
+
+                // below call can't stop low-priority BroadcastReceiver get the message.
+                //sendBroadcast(intent);
+
+                // this send function can stop low-priority BroadcastReceiver get the broadcast message.
+                sendOrderedBroadcast(intent, null);
                 break;
             case R.id.btnRegister:
                 if(myReceiver == null){
